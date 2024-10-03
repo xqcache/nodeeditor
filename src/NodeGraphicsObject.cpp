@@ -78,7 +78,9 @@ BasicGraphicsScene *NodeGraphicsObject::nodeScene() const
 
 void NodeGraphicsObject::updateQWidgetEmbedPos()
 {
-    _proxyWidget->setPos(nodeScene()->nodeGeometry().widgetPosition(_nodeId));
+    if (_proxyWidget != nullptr) {
+        _proxyWidget->setPos(nodeScene()->nodeGeometry().widgetPosition(_nodeId));
+    }
 }
 
 void NodeGraphicsObject::embedQWidget()
@@ -234,7 +236,7 @@ void NodeGraphicsObject::mousePressEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsObject::mousePressEvent(event);
 
     if (isSelected()) {
-        Q_EMIT nodeScene()->nodeSelected(_nodeId);
+        Q_EMIT nodeScene() -> nodeSelected(_nodeId);
     }
 }
 
@@ -318,7 +320,7 @@ void NodeGraphicsObject::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 
     update();
 
-    Q_EMIT nodeScene()->nodeHovered(_nodeId, event->screenPos());
+    Q_EMIT nodeScene() -> nodeHovered(_nodeId, event->screenPos());
 
     event->accept();
 }
@@ -331,7 +333,7 @@ void NodeGraphicsObject::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 
     update();
 
-    Q_EMIT nodeScene()->nodeHoverLeft(_nodeId);
+    Q_EMIT nodeScene() -> nodeHoverLeft(_nodeId);
 
     event->accept();
 }
@@ -357,12 +359,12 @@ void NodeGraphicsObject::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseDoubleClickEvent(event);
 
-    Q_EMIT nodeScene()->nodeDoubleClicked(_nodeId);
+    Q_EMIT nodeScene() -> nodeDoubleClicked(_nodeId);
 }
 
 void NodeGraphicsObject::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
-    Q_EMIT nodeScene()->nodeContextMenu(_nodeId, mapToScene(event->pos()));
+    Q_EMIT nodeScene() -> nodeContextMenu(_nodeId, mapToScene(event->pos()));
 }
 
 } // namespace QtNodes
