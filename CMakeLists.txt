@@ -111,6 +111,7 @@ set(HPP_HEADER_FILES
   include/QtNodes/internal/ConnectionStyle.hpp
   include/QtNodes/internal/DataFlowGraphicsScene.hpp
   include/QtNodes/internal/DataFlowGraphModel.hpp
+  include/QtNodes/internal/DefaultNodePainter.hpp
   include/QtNodes/internal/DefaultHorizontalNodeGeometry.hpp
   include/QtNodes/internal/Definitions.hpp
   include/QtNodes/internal/Export.hpp
@@ -130,7 +131,6 @@ set(HPP_HEADER_FILES
   include/QtNodes/internal/Style.hpp
   include/QtNodes/internal/StyleCollection.hpp
   src/DefaultConnectionPainter.hpp
-  src/DefaultNodePainter.hpp
   src/DefaultVerticalNodeGeometry.hpp
   src/NodeConnectionInteraction.hpp
   src/UndoCommands.hpp

@@ -34,7 +34,7 @@ public:
 
     QRect resizeHandleRect(NodeId const nodeId) const override;
 
-private:
+protected:
     QRectF portTextRect(NodeId const nodeId,
                         PortType const portType,
                         PortIndex const portIndex) const;
@@ -44,7 +44,6 @@ private:
 
     unsigned int maxPortsTextAdvance(NodeId const nodeId, PortType const portType) const;
 
-private:
     // Some variables are mutable because we need to change drawing
     // metrics corresponding to fontMetrics but this doesn't change
     // constness of the Node.
