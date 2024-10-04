@@ -118,6 +118,11 @@ void BasicGraphicsScene::setConnectionPainter(std::unique_ptr<AbstractConnection
     _connectionPainter = std::move(newPainter);
 }
 
+void BasicGraphicsScene::setNodeGeometry(std::unique_ptr<AbstractNodeGeometry> newGeomtry)
+{
+    _nodeGeometry = std::move(newGeomtry);
+}
+
 QUndoStack &BasicGraphicsScene::undoStack()
 {
     return *_undoStack;
