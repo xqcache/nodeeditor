@@ -40,7 +40,7 @@ public:
 
     bool isShowShadown() const;
 
-private:
+public:
     QColor ConstructionColor;
     QColor NormalColor;
     QColor SelectedColor;
