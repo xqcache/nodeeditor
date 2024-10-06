@@ -21,7 +21,7 @@ Q_NAMESPACE_EXPORT(NODE_EDITOR_PUBLIC)
     /**
  * Constants used for fetching QVariant data from GraphModel.
  */
-    enum class NodeRole {
+    enum NodeRole {
         Type = 0,           ///< Type of the current node, usually a string.
         Position = 1,       ///< `QPointF` positon of the node on the scene.
         Size = 2,           ///< `QSize` for resizable nodes.
@@ -31,7 +31,8 @@ Q_NAMESPACE_EXPORT(NODE_EDITOR_PUBLIC)
         InternalData = 6,   ///< Node-stecific user data as QJsonObject
         InPortCount = 7,    ///< `unsigned int`
         OutPortCount = 9,   ///< `unsigned int`
-        Widget = 10,        ///< Optional `QWidget*` or `nullptr`
+        Widget = 10,        ///< Optional `QWidget*` or `nullptr`,
+        ZOrder = 11,
     };
 Q_ENUM_NS(NodeRole)
 

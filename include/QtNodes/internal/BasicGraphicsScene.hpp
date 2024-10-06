@@ -96,7 +96,10 @@ public:
    */
     ConnectionGraphicsObject *connectionGraphicsObject(ConnectionId connectionId);
 
-    Qt::Orientation orientation() const { return _orientation; }
+    Qt::Orientation orientation() const
+    {
+        return _orientation;
+    }
 
     void setOrientation(Qt::Orientation const orientation);
 
@@ -157,6 +160,8 @@ public Q_SLOTS:
     void onNodeUpdated(NodeId const nodeId);
 
     void onNodeClicked(NodeId const nodeId);
+
+    void onZorderUpdated(NodeId const nodeId);
 
     void onModelReset();
 

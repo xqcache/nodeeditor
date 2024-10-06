@@ -70,6 +70,11 @@ BasicGraphicsScene::BasicGraphicsScene(AbstractGraphModel &graphModel, QObject *
             &BasicGraphicsScene::onNodePositionUpdated);
 
     connect(&_graphModel,
+            &AbstractGraphModel::zorderUpdated,
+            this,
+            &BasicGraphicsScene::onZorderUpdated);
+
+    connect(&_graphModel,
             &AbstractGraphModel::nodeUpdated,
             this,
             &BasicGraphicsScene::onNodeUpdated);
@@ -321,6 +326,14 @@ void BasicGraphicsScene::onModelReset()
     clear();
 
     traverseGraphAndPopulateGraphicsObjects();
+}
+
+void BasicGraphicsScene::onZorderUpdated(NodeId const nodeId)
+{
+    auto node = nodeGraphicsObject(nodeId);
+    if (node) {
+        node->setZValue(_graphModel.nodeData(nodeId, NodeRole::ZOrder).toReal());
+    }
 }
 
 } // namespace QtNodes

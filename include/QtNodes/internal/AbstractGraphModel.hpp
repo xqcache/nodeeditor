@@ -77,7 +77,10 @@ public:
     virtual bool connectionPossible(ConnectionId const connectionId) const = 0;
 
     /// Defines if detaching the connection is possible.
-    virtual bool detachPossible(ConnectionId const) const { return true; }
+    virtual bool detachPossible(ConnectionId const) const
+    {
+        return true;
+    }
 
     /// Creates a new connection between two nodes.
     /**
@@ -158,7 +161,10 @@ public:
    * Reimplement the function if you want to store/restore the node's
    * inner state during undo/redo node deletion operations.
    */
-    virtual QJsonObject saveNode(NodeId const) const { return {}; }
+    virtual QJsonObject saveNode(NodeId const) const
+    {
+        return {};
+    }
 
     /**
    * Reimplement the function if you want to support:
@@ -182,7 +188,9 @@ public:
    * The function must do almost exacly the same thing as the normal addNode().
    * The main difference is in a model-specific `inner-data` processing.
    */
-    virtual void loadNode(QJsonObject const &) {}
+    virtual void loadNode(QJsonObject const &)
+    {
+    }
 
 public:
     /**
@@ -239,6 +247,8 @@ Q_SIGNALS:
     void nodeFlagsUpdated(NodeId const nodeId);
 
     void nodePositionUpdated(NodeId const nodeId);
+
+    void zorderUpdated(NodeId const nodeId);
 
     void modelReset();
 

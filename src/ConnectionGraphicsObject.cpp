@@ -44,7 +44,7 @@ ConnectionGraphicsObject::ConnectionGraphicsObject(BasicGraphicsScene &scene,
         addGraphicsEffect();
     }
 
-    setZValue(-1.0);
+    setZValue(std::numeric_limits<qreal>::lowest());
 
     initializePosition();
 }

@@ -52,7 +52,7 @@ NodeGraphicsObject::NodeGraphicsObject(BasicGraphicsScene &scene, NodeId nodeId)
 
     setAcceptHoverEvents(true);
 
-    setZValue(0);
+    setZValue(_graphModel.nodeData(_nodeId, NodeRole::ZOrder).toReal());
 
     embedQWidget();
 
@@ -309,14 +309,14 @@ void NodeGraphicsObject::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
     // bring all the colliding nodes to background
     QList<QGraphicsItem *> overlapItems = collidingItems();
 
-    for (QGraphicsItem *item : overlapItems) {
-        if (item->zValue() > 0.0) {
-            item->setZValue(0.0);
-        }
-    }
+    // for (QGraphicsItem *item : overlapItems) {
+    //     if (item->zValue() > 0.0) {
+    //         item->setZValue(0.0);
+    //     }
+    // }
 
     // bring this node forward
-    setZValue(1.0);
+    // setZValue(1.0);
 
     _nodeState.setHovered(true);
 
@@ -331,7 +331,7 @@ void NodeGraphicsObject::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     _nodeState.setHovered(false);
 
-    setZValue(0.0);
+    // setZValue(0.0);
 
     update();
 
