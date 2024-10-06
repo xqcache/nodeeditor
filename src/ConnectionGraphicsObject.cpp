@@ -40,7 +40,9 @@ ConnectionGraphicsObject::ConnectionGraphicsObject(BasicGraphicsScene &scene,
 
     setAcceptHoverEvents(true);
 
-    //addGraphicsEffect();
+    if (StyleCollection::connectionStyle().isShowShadown()) {
+        addGraphicsEffect();
+    }
 
     setZValue(-1.0);
 
@@ -304,7 +306,7 @@ std::pair<QPointF, QPointF> ConnectionGraphicsObject::pointsC1C2() const
 
 void ConnectionGraphicsObject::addGraphicsEffect()
 {
-    auto effect = new QGraphicsBlurEffect;
+    auto *effect = new QGraphicsBlurEffect(this);
 
     effect->setBlurRadius(5);
     setGraphicsEffect(effect);

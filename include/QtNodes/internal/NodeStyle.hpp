@@ -49,5 +49,7 @@ public:
     float ConnectionPointDiameter;
 
     float Opacity;
+
+    bool ShowShadow;
 };
 } // namespace QtNodes

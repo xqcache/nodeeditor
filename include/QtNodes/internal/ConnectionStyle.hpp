@@ -38,6 +38,8 @@ public:
 
     bool useDataDefinedColors() const;
 
+    bool isShowShadown() const;
+
 private:
     QColor ConstructionColor;
     QColor NormalColor;
@@ -50,5 +52,7 @@ private:
     float PointDiameter;
 
     bool UseDataDefinedColors;
+
+    bool ShowShadow;
 };
 } // namespace QtNodes

@@ -38,12 +38,14 @@ NodeGraphicsObject::NodeGraphicsObject(BasicGraphicsScene &scene, NodeId nodeId)
     NodeStyle nodeStyle(nodeStyleJson);
 
     {
-        auto effect = new QGraphicsDropShadowEffect;
-        effect->setOffset(4, 4);
-        effect->setBlurRadius(20);
-        effect->setColor(nodeStyle.ShadowColor);
+        if (nodeStyle.ShowShadow) {
+            auto effect = new QGraphicsDropShadowEffect(this);
+            effect->setOffset(4, 4);
+            effect->setBlurRadius(20);
+            effect->setColor(nodeStyle.ShadowColor);
 
-        setGraphicsEffect(effect);
+            setGraphicsEffect(effect);
+        }
     }
 
     setOpacity(nodeStyle.Opacity);
@@ -236,7 +238,7 @@ void NodeGraphicsObject::mousePressEvent(QGraphicsSceneMouseEvent *event)
     QGraphicsObject::mousePressEvent(event);
 
     if (isSelected()) {
-        Q_EMIT nodeScene() -> nodeSelected(_nodeId);
+        Q_EMIT nodeScene()->nodeSelected(_nodeId);
     }
 }
 
@@ -320,7 +322,7 @@ void NodeGraphicsObject::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 
     update();
 
-    Q_EMIT nodeScene() -> nodeHovered(_nodeId, event->screenPos());
+    Q_EMIT nodeScene()->nodeHovered(_nodeId, event->screenPos());
 
     event->accept();
 }
@@ -333,7 +335,7 @@ void NodeGraphicsObject::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 
     update();
 
-    Q_EMIT nodeScene() -> nodeHoverLeft(_nodeId);
+    Q_EMIT nodeScene()->nodeHoverLeft(_nodeId);
 
     event->accept();
 }
@@ -359,12 +361,12 @@ void NodeGraphicsObject::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsItem::mouseDoubleClickEvent(event);
 
-    Q_EMIT nodeScene() -> nodeDoubleClicked(_nodeId);
+    Q_EMIT nodeScene()->nodeDoubleClicked(_nodeId);
 }
 
 void NodeGraphicsObject::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
-    Q_EMIT nodeScene() -> nodeContextMenu(_nodeId, mapToScene(event->pos()));
+    Q_EMIT nodeScene()->nodeContextMenu(_nodeId, mapToScene(event->pos()));
 }
 
 } // namespace QtNodes

@@ -88,6 +88,22 @@ void NodeStyle::setNodeStyle(QString jsonText)
         values[#variable] = variable; \
     }
 
+#define NODE_STYLE_VALUE_EXISTS(v) \
+    (v.type() != QJsonValue::Undefined && v.type() != QJsonValue::Null)
+
+#define NODE_STYLE_READ_BOOL(values, variable) \
+    { \
+        auto valueRef = values[#variable]; \
+        NODE_STYLE_CHECK_UNDEFINED_VALUE(valueRef, variable) \
+        if (NODE_STYLE_VALUE_EXISTS(valueRef)) \
+            variable = valueRef.toBool(); \
+    }
+
+#define NODE_STYLE_WRITE_BOOL(values, variable) \
+    { \
+        values[#variable] = variable; \
+    }
+
 void NodeStyle::loadJson(QJsonObject const &json)
 {
     QJsonValue nodeStyleValues = json["NodeStyle"];
@@ -113,6 +129,8 @@ void NodeStyle::loadJson(QJsonObject const &json)
     NODE_STYLE_READ_FLOAT(obj, ConnectionPointDiameter);
 
     NODE_STYLE_READ_FLOAT(obj, Opacity);
+
+    NODE_STYLE_READ_BOOL(obj, ShowShadow);
 }
 
 QJsonObject NodeStyle::toJson() const
@@ -138,6 +156,8 @@ QJsonObject NodeStyle::toJson() const
     NODE_STYLE_WRITE_FLOAT(obj, ConnectionPointDiameter);
 
     NODE_STYLE_WRITE_FLOAT(obj, Opacity);
+
+    NODE_STYLE_WRITE_BOOL(obj, ShowShadow);
 
     QJsonObject root;
     root["NodeStyle"] = obj;

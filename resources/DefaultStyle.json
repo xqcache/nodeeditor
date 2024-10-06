@@ -24,7 +24,9 @@
 
     "ConnectionPointDiameter": 8.0,
 
-    "Opacity": 0.8
+    "Opacity": 0.8,
+
+    "ShowShadow": true
   },
   "ConnectionStyle": {
     "ConstructionColor": "gray",
@@ -37,6 +39,8 @@
     "ConstructionLineWidth": 2.0,
     "PointDiameter": 10.0,
 
-    "UseDataDefinedColors": false
+    "UseDataDefinedColors": false,
+
+    "ShowShadow": false
   }
 }
